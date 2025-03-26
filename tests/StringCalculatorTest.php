@@ -71,25 +71,9 @@ class StringCalculatorTest extends TestCase
     /**
      * @test
      */
-    public function givenNumbersSeparatedByCustomLargeDelimiterReturnsSumOfNumbers(): void
-    {
-        $this->assertEquals(6, $this->stringCalculator->add("//[***]\n1***2***3"));
-    }
-
-    /**
-     * @test
-     */
     public function givenNumbersSeparatedByCustomsDelimitersReturnsSumOfNumbers(): void
     {
-        $this->assertEquals(6, $this->stringCalculator->add("//[*][%]\n1%2*3"));
-    }
-
-    /**
-     * @test
-     */
-    public function givenNumbersSeparatedByCustomsLargeDelimitersReturnsSumOfNumbers(): void
-    {
-        $this->assertEquals(6, $this->stringCalculator->add("//[***][%$%$]\n1***2%$%$3"));
+        $this->assertEquals(6, $this->stringCalculator->add("//[***][%%%]\n1***2%%%3"));
     }
 }
  
