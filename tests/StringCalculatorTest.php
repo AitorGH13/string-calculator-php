@@ -55,7 +55,7 @@ class StringCalculatorTest extends TestCase
      */
     public function givenNegativeNumbersThrowsExceptionWithAllNegativeNumbers(): void
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage("negativos no soportados: -1, -2, -3");
         $this->stringCalculator->add("1,-1,-2,-3"); 
     }
@@ -76,5 +76,12 @@ class StringCalculatorTest extends TestCase
         $this->assertEquals(6, $this->stringCalculator->add("//[***]\n1***2**3"));
     }
 
+    /**
+     * @test
+     */
+    public function givenNumbersSeparatedByCustomsDelimitersReturnsSumOfNumbers(): void
+    {
+        $this->assertEquals(6, $this->stringCalculator->add("//[*][%]\n1%2*3"));
+    }
 }
  
