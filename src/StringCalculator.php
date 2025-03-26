@@ -120,5 +120,4 @@ class StringCalculator
     {
         return array_sum(array_map('intval', $numbersArray));
     }
-
 }
