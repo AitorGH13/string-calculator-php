@@ -89,7 +89,7 @@ class StringCalculatorTest extends TestCase
      */
     public function givenNumbersSeparatedByCustomsDelimitersWithCustomLengthReturnsSumOfNumbers(): void
     {
-        $this->assertEquals(6, $this->stringCalculator->add("//[***][&&]\n1***2&&3"));
+        $this->assertEquals(6, $this->stringCalculator->add("//[**][&&]\n1**2&&3"));
     }
 }
  

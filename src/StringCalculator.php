@@ -55,7 +55,7 @@ class StringCalculator
     {
         $delimiter = ",";
         if (str_starts_with($numbers, "//")) {
-            if (preg_match("/\/\/\[(.+)]\n/", $numbers, $matches)) {
+            if (preg_match("/\/\/\[(.*?)]\n/", $numbers, $matches)) {
                 $delimiter = preg_quote($matches[1],'/');
             }
             elseif (preg_match("/\/\/(.+)\n/", $numbers, $matches)) {
