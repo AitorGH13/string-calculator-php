@@ -53,6 +53,14 @@ class StringCalculatorTest extends TestCase
     /**
      * @test
      */
+    public function givenNumbersSeparatedByCustomDelimiterReturnsSumOfNumbers(): void
+    {
+        $this->assertEquals(6, $this->stringCalculator->add("//;\n1;2;3"));
+    }
+
+    /**
+     * @test
+     */
     public function givenNegativeNumbersThrowsExceptionWithAllNegativeNumbers(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -71,9 +79,17 @@ class StringCalculatorTest extends TestCase
     /**
      * @test
      */
-    public function givenNumbersSeparatedByCustomsDelimitersReturnsSumOfNumbers(): void
+    public function givenNumbersSeparatedByCustomDelimiterWithCustomLengthReturnsSumOfNumbers(): void
     {
-        $this->assertEquals(6, $this->stringCalculator->add("//[***][%%%]\n1***2%%%3"));
+        $this->assertEquals(6, $this->stringCalculator->add("//[***]\n1***2***3"));
+    }
+
+    /**
+     * @test
+     */
+    public function givenNumbersSeparatedByCustomsDelimitersWithCustomLengthReturnsSumOfNumbers(): void
+    {
+        $this->assertEquals(6, $this->stringCalculator->add("//[***][&&]\n1***2&&3"));
     }
 }
  

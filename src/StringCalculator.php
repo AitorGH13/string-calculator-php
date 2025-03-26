@@ -58,11 +58,14 @@ class StringCalculator
             if (preg_match("/\/\/\[(.+)]\n/", $numbers, $matches)) {
                 $delimiter = preg_quote($matches[1],'/');
             }
+            elseif (preg_match("/\/\/(.+)\n/", $numbers, $matches)) {
+                $delimiter = preg_quote($matches[1], '/');
+            }
 
             $numbers = substr($numbers, strpos($numbers, "\n") + 1);
         }
 
-        return preg_split("/[$delimiter\n]/", $numbers);
+        return preg_split("/[$delimiter|\n]/", $numbers);
     }
 
     /**
@@ -87,16 +90,16 @@ class StringCalculator
      */
     private function checkNegativeNumbers(array $numbersArray): void
     {
-        $negativos = [];
+        $negatives = [];
         foreach ($numbersArray as $number) {
             if (intval($number) < 0) {
-                $negativos[] = $number;
+                $negatives[] = $number;
             }
         }
 
-        if (!empty($negativos) > 0) {
+        if (!empty($negatives) > 0) {
 
-            throw new \InvalidArgumentException("negativos no soportados: " . implode(", ", $negativos));
+            throw new \InvalidArgumentException("negativos no soportados: " . implode(", ", $negatives));
         }
     }
 
