@@ -6,7 +6,6 @@ namespace Deg540\StringCalculatorPHP\Test;
 
 use Deg540\StringCalculatorPHP\StringCalculator;
 use PHPUnit\Framework\TestCase;
-use InvalidArgumentException;
 
 class StringCalculatorTest extends TestCase
 {
@@ -17,6 +16,7 @@ class StringCalculatorTest extends TestCase
         parent::setUp();
         $this->stringCalculator = new StringCalculator();
     }
+
     /**
      * @test
      */
@@ -24,6 +24,7 @@ class StringCalculatorTest extends TestCase
     {
         $this->assertEquals(0, $this->stringCalculator->add(""));
     }
+
     /**
      * @test
      */ 
@@ -32,6 +33,7 @@ class StringCalculatorTest extends TestCase
         $stringCalculator = new StringCalculator();
         $this->assertEquals(1, $this->stringCalculator->add("1"));
     }
+
     /**
      * @test
      */
@@ -39,6 +41,7 @@ class StringCalculatorTest extends TestCase
     {
         $this->assertEquals(6, $this->stringCalculator->add("1,2,3"));
     }
+
     /**
      * @test
      */
@@ -46,13 +49,7 @@ class StringCalculatorTest extends TestCase
     {
         $this->assertEquals(6, $this->stringCalculator->add("1\n2,3"));  
     }
-    /**
-     * @test
-     */
-    public function givenNumbersSeparatedByCustomDelimiterReturnsSumOfNumbers(): void
-    {
-        $this->assertEquals(6, $this->stringCalculator->add("//;\n1;2;3"));
-    }
+
     /**
      * @test
      */
@@ -62,19 +59,22 @@ class StringCalculatorTest extends TestCase
         $this->expectExceptionMessage("negativos no soportados: -1, -2, -3");
         $this->stringCalculator->add("1,-1,-2,-3"); 
     }
+
     /**
      * @test
      */
-    public function givenNumbersGreaterThan1000AreIgnoredAndReturnsSumOfRemainingNumbers(): void
+    public function givenNumbersGreaterThanThousandAreIgnoredAndReturnsSumOfNumbers(): void
     {
         $this->assertEquals(6, $this->stringCalculator->add("1,1001,2,2000,3")); 
     }
+
     /**
      * @test
      */
-    public function givenNumbersSeparatedByCustomsDelimitersReturnsSumOfNumbers(): void
+    public function givenNumbersSeparatedByCustomLargeDelimiterReturnsSumOfNumbers(): void
     {
-        $this->assertEquals(6, $this->stringCalculator->add("//***\n13")); 
+        $this->assertEquals(6, $this->stringCalculator->add("//[***]\n1***2**3"));
     }
+
 }
  
